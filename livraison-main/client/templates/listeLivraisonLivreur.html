@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='login/fonts/icomoon/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login/css/owl.carousel.min.css') }}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='login/css/bootstrap.min.css') }}">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='login/css/style.css') }}">
+
+    <title>Login #2</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <ul class="list-group list-group-flush">
+            {% for l in ls %}
+            <li class="list-group-item">
+                <h4>date de livraison : {{ l.dateLivraison }}</h4>
+                <h4>destinataire : {{ l.destinataire }}</h4>
+                <h4>colis : {{ l.colis }}</h4>
+                <h4>paiement : {% if l.paiement == 0 %}
+                    <button class="btn btn-danger"></button> {% else %}
+                    <button class="btn btn-light"></button> {% endif %}
+                </h4>
+                <h4>Statut de la livraison : {% if l.livraison == 0 %}
+                    <button class="btn btn-danger"></button>
+                    <a href="../validerLivraison/livreur/{{ l.id }}" class="btn btn-success disabled">valider la livraison</a> {% elif l.livraison == 1 %}
+                    <button class="btn btn-light"></button>
+                    <a href="../validerLivraison/livreur/{{ l.id }}" class="btn btn-success">valider la livraison</a> {% else %}
+                    <button class="btn btn-success"></button>
+                    <a href="../validerLivraison/livreur/{{ l.id }}" class="btn btn-success disabled">valider la livraison</a> {% endif %}
+                </h4>
+
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+
+    <script src="{{ url_for('static', filename='login/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='login/js/popper.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='login/js/bootstrap.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='login/js/main.js') }}"></script>
+
+</body>
+
+</html>
